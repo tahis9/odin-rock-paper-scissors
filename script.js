@@ -20,11 +20,6 @@ function getHumanChoice() {
   return choice;
 }
 
-// Create variable to track Player's score
-let humanScore = 0;
-
-// Create var to track Computer's score
-let computerScore = 0;
 
 function calcResult(humanChoice,computerChoice) {
   let result = "";
@@ -69,19 +64,44 @@ function calcResultChoices(a,b) {
   
 }
 
-
-function playRound() {
+function playRound(humanScore, computerScore) {
   let humanChoice = getHumanChoice().toLowerCase();
   let computerChoice = getComputerChoice().toLowerCase(); 
   result = calcResult(humanChoice,computerChoice);
   console.log("You " + result + "! " + calcResultChoices(humanChoice,computerChoice));
-  if (result === "win") {
-    humanScore += 1;
-  }
-  if (result === "lose") {
-    computerScore += 1;
-  }
+
+  return (result)
 }
 
+function playGame() {
+  // Create variable to track Player's score
+  let humanScore = 0;
 
+  // Create var to track Computer's score
+  let computerScore = 0;
+
+  // for every round up to 5 total
+  for (let i = 1; i <=5; i++) {
+    result = playRound();
+    if (result === "win") {
+      humanScore += 1;
+    }
+    if (result === "lose") {
+      computerScore += 1;
+    }
+    let score = "player points = " + humanScore + " and computer points = " + computerScore;
+    if (i === 5) {
+      if (humanScore > computerScore) {
+        console.log("You won the match! Final scores are " + score)
+      } else if (humanScore > computerScore) {
+        console.log("You lost the match! Final scores are " + score)
+      } else {
+        console.log("You drew the match with the Computer! Final scores are " + score)
+      }
+    } else {
+      console.log("Current points are " + score);
+    }
+  }
+
+}
 
