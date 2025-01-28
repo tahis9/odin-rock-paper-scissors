@@ -17,7 +17,18 @@ function getHumanChoice() {
   let choice = "";
   // Ask user for their choice
   choice = window.prompt("Do you choose Rock, Paper or Scissors?");
-  return choice;
+  // Check if is valid choice
+  let i = 1;
+  let humanChoice = choice.toLowerCase();
+  while (i){
+    if (humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors") {
+      return choice;
+    } else {
+      choice = window.prompt('Invalid response. Please type "Rock", "Paper" or "Scissors"');
+      humanChoice = choice.toLowerCase();
+    }
+  }
+  
 }
 
 
@@ -66,6 +77,7 @@ function calcResultChoices(a,b) {
 
 function playRound(humanScore, computerScore) {
   let humanChoice = getHumanChoice().toLowerCase();
+
   let computerChoice = getComputerChoice().toLowerCase(); 
   result = calcResult(humanChoice,computerChoice);
   console.log("You " + result + "! " + calcResultChoices(humanChoice,computerChoice));
