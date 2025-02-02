@@ -18,12 +18,15 @@ function getHumanChoice() {
   // Ask user for their choice
   choice = window.prompt("Do you choose Rock, Paper or Scissors?");
   // Check if is valid choice
+  let i = 1;
   let humanChoice = choice.toLowerCase();
-  if (humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors") {
-    return choice;
-  } else {
-    choice = window.prompt('Invalid response. Please type "Rock", "Paper" or "Scissors"');
-    humanChoice = choice.toLowerCase();
+  while (i){
+    if (humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors") {
+      return choice;
+    } else {
+      choice = window.prompt('Invalid response. Please type "Rock", "Paper" or "Scissors"');
+      humanChoice = choice.toLowerCase();
+    }
   }
   
 }
@@ -101,11 +104,11 @@ function playGame() {
     let score = "player points = " + humanScore + " and computer points = " + computerScore;
     if (i === 5) {
       if (humanScore > computerScore) {
-        console.log("You won the match! \nFinal scores are " + score)
+        console.log("You won the match! Final scores are " + score)
       } else if (humanScore > computerScore) {
-        console.log("You lost the match! \nFinal scores are " + score)
+        console.log("You lost the match! Final scores are " + score)
       } else {
-        console.log("You drew the match with the Computer! \nFinal scores are " + score)
+        console.log("You drew the match with the Computer! Final scores are " + score)
       }
     } else {
       console.log("Current points are " + score);
