@@ -1,7 +1,16 @@
+const selectionContainer = document.querySelector(".selection-container");
 const playerSelectRock = document.querySelector("#rock");
 const playerSelectPaper = document.querySelector("#paper");
 const playerSelectScissors = document.querySelector("#scissors");
-const resultsContainer = document.querySelector(".results-container")
+const selectButtons = document.querySelectorAll(".selection-box");
+const resultsContainer = document.querySelector(".results-container");
+// Create variable to track Player's score
+let humanScore = 0;
+// Create var to track Computer's score
+let computerScore = 0;
+// Create var to track rounds
+let rounds = 0;
+
 
 function getComputerChoice() {
   // Create Random Number
@@ -63,49 +72,69 @@ function playRound(humanChoice) {
   let computerChoice = getComputerChoice(); 
   result = calcResult(humanChoice,computerChoice);
   resultsContainer.replaceChildren();
-  const resultPara = document.createElement("p");
-  resultPara.textContent = "You " + result + "! " + calcResultChoices(humanChoice,computerChoice);
-  resultsContainer.appendChild(resultPara);
+  const roundResult = document.createElement("p");
+  roundResult.textContent = "You " + result + "! " + calcResultChoices(humanChoice,computerChoice);
+  resultsContainer.appendChild(roundResult);
 
   return (result)
 }
 
-function playGame() {
-  // Create variable to track Player's score
-  let humanScore = 0;
-
-  // Create var to track Computer's score
-  let computerScore = 0;
-
-
+function trackPoints(result) {
+  rounds += 1;
   // for every round up to 5 total
-  // for (let i = 1; i <=5; i++) {
-    // result = playRound();
-    // if (result === "win") {
-    //   humanScore += 1;
-    // }
-    // if (result === "lose") {
-    //   computerScore += 1;
-    // }
-    // let score = "player points = " + humanScore + " and computer points = " + computerScore;
-    // if (i === 5) {
-    //   if (humanScore > computerScore) {
-    //     console.log("You won the match! Final scores are " + score)
-    //   } else if (humanScore > computerScore) {
-    //     console.log("You lost the match! Final scores are " + score)
-    //   } else {
-    //     console.log("You drew the match with the Computer! Final scores are " + score)
-    //   }
-    // } else {
-    //   console.log("Current points are " + score);
-    // }
-  // }
+  if (result === "win") {
+    humanScore += 1;
+  }
+  if (result === "lose") {
+    computerScore += 1;
+  }
+  const roundScores = document.createElement("p");
+  let score = "Player points = " + humanScore + " and Computer points = " + computerScore;
+  if (rounds === 5) {
+
+    if (humanScore > computerScore) {
+        roundScores.textContent = "You won the match! Final scores are " + score;
+    } else if (humanScore > computerScore) {
+        roundScores.textContent = "You lost the match! Final scores are " + score;
+    } else {
+        roundScores.textContent = "You drew the match with the Computer! Final scores are " + score;
+    }
+    // selectButtons.style.display = "none";
+    selectButtons.forEach((i) => {
+      i.style.display = "none";
+    });
+    const resetButton = document.createElement("button")
+    resetButton.textContent = "Reset";
+    selectionContainer.appendChild(resetButton);
+    resetButton.addEventListener("click", () => {
+      window.location.reload();
+    });
+    
+  } else {
+      roundScores.textContent = "Current points are " + score;
+  }
+  resultsContainer.appendChild(roundScores);
+}
+
+function selectedRock() {
+  let result = playRound("Rock");
+  trackPoints(result);
 
 }
 
-playerSelectRock.addEventListener("click", () => {playRound("Rock")});
-playerSelectPaper.addEventListener("click", () => {playRound("Paper")});
-playerSelectScissors.addEventListener("click", () => {playRound("Scissors")});
+function selectedPaper() {
+  playRound("Paper");
+  trackPoints(result);
+}
+
+function selectedScissors() {
+  playRound("Scissors");
+  trackPoints(result);
+}
+
+playerSelectRock.addEventListener("click", selectedRock);
+playerSelectPaper.addEventListener("click", selectedPaper);
+playerSelectScissors.addEventListener("click", selectedScissors);
 
 
 

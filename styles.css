@@ -12,7 +12,7 @@
   margin: 10px auto;
 }
 
-.selection-box {
+.selection-container > button {
   flex-basis: 150px;
   height: 75px;
   text-align: center;
