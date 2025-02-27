@@ -1,3 +1,9 @@
+/* body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+} */
+
 .selection-container {
   display: flex;
   justify-content: center;
@@ -10,4 +16,9 @@
   flex-basis: 150px;
   height: 75px;
   text-align: center;
+}
+
+.results-container {
+  text-align: center; 
+  margin: 10px auto;
 }

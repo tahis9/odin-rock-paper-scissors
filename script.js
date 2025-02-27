@@ -1,6 +1,7 @@
 const playerSelectRock = document.querySelector("#rock");
 const playerSelectPaper = document.querySelector("#paper");
 const playerSelectScissors = document.querySelector("#scissors");
+const resultsContainer = document.querySelector(".results-container")
 
 function getComputerChoice() {
   // Create Random Number
@@ -14,23 +15,6 @@ function getComputerChoice() {
   return choice;
 }
 // console.log(getComputerChoice())
-
-function getHumanChoice() {
-  // Create variable to store user choice
-  let choice;
- 
-  let i = 0;
-
-  // while (i == 0){
-  //   playerSelectRock.addEventListener("click", () => {choice = "Rock"});
-  //   playerSelectPaper.addEventListener("click", () => {choice = "Paper"});
-  //   playerSelectScissors.addEventListener("click", () => {choice = "Scissors"});
-  //   if (choice){
-  //     return choice;
-  //   }
-  // }
-}
-
 
 function calcResult(humanChoice,computerChoice) {
   let result = "";
@@ -69,10 +53,8 @@ function calcResultChoices(a,b) {
       return (a + " beats " + b);
     } else {
       return (b + " beats " + a);
-    }
-    
+    } 
   }
-  
 }
 
 function playRound(humanChoice) {
@@ -80,12 +62,13 @@ function playRound(humanChoice) {
 
   let computerChoice = getComputerChoice(); 
   result = calcResult(humanChoice,computerChoice);
-  console.log("You " + result + "! " + calcResultChoices(humanChoice,computerChoice));
+  resultsContainer.replaceChildren();
+  const resultPara = document.createElement("p");
+  resultPara.textContent = "You " + result + "! " + calcResultChoices(humanChoice,computerChoice);
+  resultsContainer.appendChild(resultPara);
 
   return (result)
 }
-
-
 
 function playGame() {
   // Create variable to track Player's score
