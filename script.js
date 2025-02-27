@@ -21,14 +21,14 @@ function getHumanChoice() {
  
   let i = 0;
 
-  while (i == 0){
-    playerSelectRock.addEventListener("click", () => {choice = "Rock"});
-    playerSelectPaper.addEventListener("click", () => {choice = "Paper"});
-    playerSelectScissors.addEventListener("click", () => {choice = "Scissors"});
-    if (choice){
-      return choice;
-    }
-  }
+  // while (i == 0){
+  //   playerSelectRock.addEventListener("click", () => {choice = "Rock"});
+  //   playerSelectPaper.addEventListener("click", () => {choice = "Paper"});
+  //   playerSelectScissors.addEventListener("click", () => {choice = "Scissors"});
+  //   if (choice){
+  //     return choice;
+  //   }
+  // }
 }
 
 
@@ -75,8 +75,8 @@ function calcResultChoices(a,b) {
   
 }
 
-function playRound() {
-  let humanChoice = getHumanChoice();
+function playRound(humanChoice) {
+  // let humanChoice = getHumanChoice();
 
   let computerChoice = getComputerChoice(); 
   result = calcResult(humanChoice,computerChoice);
@@ -94,30 +94,36 @@ function playGame() {
   // Create var to track Computer's score
   let computerScore = 0;
 
+
   // for every round up to 5 total
-  for (let i = 1; i <=5; i++) {
-    result = playRound();
-    if (result === "win") {
-      humanScore += 1;
-    }
-    if (result === "lose") {
-      computerScore += 1;
-    }
-    let score = "player points = " + humanScore + " and computer points = " + computerScore;
-    if (i === 5) {
-      if (humanScore > computerScore) {
-        console.log("You won the match! Final scores are " + score)
-      } else if (humanScore > computerScore) {
-        console.log("You lost the match! Final scores are " + score)
-      } else {
-        console.log("You drew the match with the Computer! Final scores are " + score)
-      }
-    } else {
-      console.log("Current points are " + score);
-    }
-  }
+  // for (let i = 1; i <=5; i++) {
+    // result = playRound();
+    // if (result === "win") {
+    //   humanScore += 1;
+    // }
+    // if (result === "lose") {
+    //   computerScore += 1;
+    // }
+    // let score = "player points = " + humanScore + " and computer points = " + computerScore;
+    // if (i === 5) {
+    //   if (humanScore > computerScore) {
+    //     console.log("You won the match! Final scores are " + score)
+    //   } else if (humanScore > computerScore) {
+    //     console.log("You lost the match! Final scores are " + score)
+    //   } else {
+    //     console.log("You drew the match with the Computer! Final scores are " + score)
+    //   }
+    // } else {
+    //   console.log("Current points are " + score);
+    // }
+  // }
 
 }
+
+playerSelectRock.addEventListener("click", () => {playRound("Rock")});
+playerSelectPaper.addEventListener("click", () => {playRound("Paper")});
+playerSelectScissors.addEventListener("click", () => {playRound("Scissors")});
+
 
 
 
