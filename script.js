@@ -1,3 +1,6 @@
+const playerSelectRock = document.querySelector("#rock");
+const playerSelectPaper = document.querySelector("#paper");
+const playerSelectScissors = document.querySelector("#scissors");
 
 function getComputerChoice() {
   // Create Random Number
@@ -14,44 +17,41 @@ function getComputerChoice() {
 
 function getHumanChoice() {
   // Create variable to store user choice
-  let choice = "";
-  // Ask user for their choice
-  choice = window.prompt("Do you choose Rock, Paper or Scissors?");
-  // Check if is valid choice
-  let i = 1;
-  let humanChoice = choice.toLowerCase();
-  while (i){
-    if (humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors") {
+  let choice;
+ 
+  let i = 0;
+
+  while (i == 0){
+    playerSelectRock.addEventListener("click", () => {choice = "Rock"});
+    playerSelectPaper.addEventListener("click", () => {choice = "Paper"});
+    playerSelectScissors.addEventListener("click", () => {choice = "Scissors"});
+    if (choice){
       return choice;
-    } else {
-      choice = window.prompt('Invalid response. Please type "Rock", "Paper" or "Scissors"');
-      humanChoice = choice.toLowerCase();
     }
   }
-  
 }
 
 
 function calcResult(humanChoice,computerChoice) {
   let result = "";
-  if (humanChoice == "rock") {
-    if (computerChoice == "paper") {
+  if (humanChoice == "Rock") {
+    if (computerChoice == "Paper") {
       result = "lose"
-    } else if (computerChoice == "scissors") {
+    } else if (computerChoice == "Scissors") {
       result = "win"
     } 
   }
-  if (humanChoice == "paper") {
-    if (computerChoice == "scissors") {
+  if (humanChoice == "Paper") {
+    if (computerChoice == "Scissors") {
       result = "lose"
-    } else if (computerChoice == "rock") {
+    } else if (computerChoice == "Rock") {
       result = "win"
     }
   } 
-  if (humanChoice == "scissors") {
-    if (computerChoice == "rock") {
+  if (humanChoice == "Scissors") {
+    if (computerChoice == "Rock") {
       result = "lose"
-    } else if (computerChoice == "paper") {
+    } else if (computerChoice == "Paper") {
       result = "win"
     }
   } 
@@ -75,15 +75,17 @@ function calcResultChoices(a,b) {
   
 }
 
-function playRound(humanScore, computerScore) {
-  let humanChoice = getHumanChoice().toLowerCase();
+function playRound() {
+  let humanChoice = getHumanChoice();
 
-  let computerChoice = getComputerChoice().toLowerCase(); 
+  let computerChoice = getComputerChoice(); 
   result = calcResult(humanChoice,computerChoice);
   console.log("You " + result + "! " + calcResultChoices(humanChoice,computerChoice));
 
   return (result)
 }
+
+
 
 function playGame() {
   // Create variable to track Player's score
@@ -116,4 +118,6 @@ function playGame() {
   }
 
 }
+
+
 

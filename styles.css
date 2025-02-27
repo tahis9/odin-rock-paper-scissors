@@ -1,0 +1,13 @@
+.selection-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  text-align: center; 
+  margin: 10px auto;
+}
+
+.selection-box {
+  flex-basis: 150px;
+  height: 75px;
+  text-align: center;
+}
